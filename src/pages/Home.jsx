@@ -6,7 +6,7 @@ const Home = (prop) => {
   const navigate = useNavigate();
   function onSearch(term) {
     console.log("term", term);
-    navigate(`/results?search=${term}`);
+    navigate(`/results/${term}`,{ replace: true });
   }
   return (
     <div className="Home">

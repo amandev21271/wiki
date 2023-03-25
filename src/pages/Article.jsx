@@ -9,14 +9,16 @@ import {
 } from "../services/SearchService";
 const Article = () => {
   const { keyword } = useParams();
-  const title = keyword ? keyword : "React (JavaScript library)";
+
   const [content, setContent] = useState("");
   useEffect(() => {
+    const title = keyword ? keyword : "React (JavaScript library)";
     fetchContentParsed(title).then((data) => {
-      setContent(formatPage(data.parse.text));
-      console.log(formatPage(data.parse.text));
+      const parsedContent = formatPage(data.parse.text);
+      setContent(parsedContent);
+      console.log(parsedContent);
     });
-  }, []);
+  }, [keyword]);
 
   return (
     <div className="article">

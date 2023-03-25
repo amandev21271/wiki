@@ -3,8 +3,8 @@ import ReactDOM from 'react-dom/client'
 import './assets/index.css'
 import App from './App'
 import reportWebVitals from './reportWebVitals'
-;<script src="https://raw.githubusercontent.com/pirxpilot/wiky/master/wiky.js"></script>
 
+// ;<script src="https://raw.githubusercontent.com/pirxpilot/wiky/master/wiky.js"></script>
 const root = ReactDOM.createRoot(document.getElementById('root'))
 root.render(
   <React.StrictMode>

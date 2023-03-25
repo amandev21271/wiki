@@ -5,11 +5,10 @@ import Card from "../components/Card";
 import { useParams, useSearchParams } from "react-router-dom";
 const SearchResults = () => {
   const [results, setResults] = useState([]);
-  const [searchParms] = useSearchParams();
-  const keyword = searchParms.get("search");
+  const { search } = useParams();
+  const keyword = search;
   let resultFlag = false;
   useEffect(() => {
-    console.log(keyword);
     fetchSearchResults(keyword).then((data) => {
       console.log(data);
       if (data.query.searchinfo.totalhits !== 0) {
@@ -26,7 +25,7 @@ const SearchResults = () => {
         resultFlag = false;
       }
     });
-  }, []);
+  }, [search]);
   return (
     <div className="about">
       <Header />

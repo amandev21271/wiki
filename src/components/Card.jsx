@@ -8,7 +8,7 @@ const Card = ({ title, description }) => {
   const handleClick = (e) => {
     e.preventDefault();
     console.log(keyword);
-    navigate(`/wiki/${title}`);
+    navigate(`/article/${title}`, { replace: true });
   };
   return (
     <div className="card card-blog" onClick={handleClick}>
