@@ -1,17 +1,17 @@
 {
   "files": {
     "main.css": "/wiki/static/css/main.4f42b90f.css",
-    "main.js": "/wiki/static/js/main.98205aad.js",
+    "main.js": "/wiki/static/js/main.1aa8122b.js",
     "static/js/787.d477f4e7.chunk.js": "/wiki/static/js/787.d477f4e7.chunk.js",
     "static/media/not-found-meme.jpg": "/wiki/static/media/not-found-meme.c6e15e77249898ec8789.jpg",
     "static/media/logo.svg": "/wiki/static/media/logo.6ce24c58023cc2f8fd88fe9d219db6c6.svg",
     "index.html": "/wiki/index.html",
     "main.4f42b90f.css.map": "/wiki/static/css/main.4f42b90f.css.map",
-    "main.98205aad.js.map": "/wiki/static/js/main.98205aad.js.map",
+    "main.1aa8122b.js.map": "/wiki/static/js/main.1aa8122b.js.map",
     "787.d477f4e7.chunk.js.map": "/wiki/static/js/787.d477f4e7.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.4f42b90f.css",
-    "static/js/main.98205aad.js"
+    "static/js/main.1aa8122b.js"
   ]
 }
