@@ -1,9 +1,12 @@
 .content-wrapper {
   margin: 10px 10px;
   text-align: left;
+  width: inherit;
 }
 
-.mw-headline {
+.mw-parser-output {
+  overflow: auto;
+  overflow-y: hidden;
 }
 
 p {

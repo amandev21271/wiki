@@ -1,18 +1,23 @@
 import { useEffect, useState } from "react";
 import Header from "../components/Header";
-import { fetchDetails, fetchSearchResults } from "../services/SearchService";
+import { fetchSearchResults } from "../services/SearchService";
 import Card from "../components/Card";
-import { useParams, useSearchParams } from "react-router-dom";
+import { Link, useParams, useSearchParams } from "react-router-dom";
+import DidYouMean from "../services/DidYouMean";
+const _ = require("lodash");
 const SearchResults = () => {
   const [results, setResults] = useState([]);
+  const [suggestion, setSuggestion] = useState(null);
+  const [resultFlag, setResultFlag] = useState(true);
   const { search } = useParams();
   const keyword = search;
-  let resultFlag = false;
   useEffect(() => {
     fetchSearchResults(keyword).then((data) => {
-      console.log(data);
-      if (data.query.searchinfo.totalhits !== 0) {
-        resultFlag = true;
+      if (
+        data.query.searchinfo.totalhits !== 0 &&
+        _.get(data.continue, "sroffset")
+      ) {
+        setResultFlag(true);
         let count = data.continue.sroffset;
         let searchResults = [];
         for (var i = 0; i < count; i++) {
@@ -22,16 +27,48 @@ const SearchResults = () => {
         }
         setResults(searchResults);
       } else {
-        resultFlag = false;
+        setResultFlag(false);
+        DidYouMean(keyword).then((res) => {
+          console.log(res);
+          if (res.length === 1) {
+            setSuggestion(res[0]);
+          }
+        });
       }
     });
   }, [search]);
+
+  const isSuggestionAvailable = () => {
+    console.log(resultFlag === false && suggestion !== null);
+    return resultFlag === false && suggestion !== null;
+  };
+
   return (
     <div className="about">
       <Header />
       <h1>{keyword}</h1>
       <div className="data" id="result"></div>
-      {results.map((result) => (
+      {(resultFlag === false && suggestion !== null) && (
+        <Link to={`/results/${suggestion}`}>Did you mean {suggestion}?</Link>
+      )}
+      
+
+      {(resultFlag === false && suggestion === null) && (
+        <h3>Oops! Nothing found</h3>
+      )} 
+
+      {resultFlag === true &&
+        results.map((result) => (
+          <span>
+            <Card
+              title={result.title}
+              description={
+                <div dangerouslySetInnerHTML={{ __html: result.snippet }} />
+              }
+            />
+          </span>
+        ))}
+      {/* {results.map((result) => (
         <span>
           <Card
             title={result.title}
@@ -40,7 +77,7 @@ const SearchResults = () => {
             }
           />
         </span>
-      ))}
+      ))} */}
     </div>
   );
 };

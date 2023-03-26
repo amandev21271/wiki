@@ -6,6 +6,7 @@ import reportWebVitals from './reportWebVitals'
 
 // ;<script src="https://raw.githubusercontent.com/pirxpilot/wiky/master/wiky.js"></script>
 const root = ReactDOM.createRoot(document.getElementById('root'))
+
 root.render(
   <React.StrictMode>
     <App />
